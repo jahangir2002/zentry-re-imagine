@@ -28,7 +28,6 @@ This project is built using the following tools and libraries:
 - React - A JavaScript library for building user interfaces.
 - Tailwind CSS - A utility-first CSS framework for styling components.
 - GSAP (GreenSock Animation Platform) - For smooth, high-performance animations.
-- Locomotive Scroll - A smooth scrolling library that enhances the scroll experience.
 - Vite - A fast and optimized build tool for modern web development.
 ## Project Setup
 
