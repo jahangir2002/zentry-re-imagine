@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import Button from './Button';
 import { TiLocationArrow } from 'react-icons/ti';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 const Hero = () => {
 
@@ -30,6 +32,33 @@ const Hero = () => {
 
     }
 
+    useGSAP(
+        () => {
+          if (hasClicked) {
+            gsap.set("#next-video", { visibility: "visible" });
+            gsap.to("#next-video", {
+              transformOrigin: "center center",
+              scale: 1,
+              width: "100%",
+              height: "100%",
+              duration: 1,
+              ease: "power1.inOut",
+              onStart: () => nextVdRef.current.play(),
+            });
+            gsap.from("#current-video", {
+              transformOrigin: "center center",
+              scale: 0,
+              duration: 1.5,
+              ease: "power1.inOut",
+            });
+          }
+        },
+        {
+          dependencies: [currentIndex],
+          revertOnUpdate: true,
+        }
+      );
+
     const getVideoSrc = (index) => `videos/hero-${index}.mp4`
 
     return (
@@ -58,7 +87,7 @@ const Hero = () => {
                         src={getVideoSrc(currentIndex)}
                         loop
                         muted
-                        id='next-vodeo'
+                        id='next-video'
                         className='absolute-center invisible absolute z-10 size-64 object-cover object-center'
                         onLoadedData={handleVideoLoad}
 
@@ -66,7 +95,7 @@ const Hero = () => {
 
                     <video
                         src={getVideoSrc(currentIndex === totalVideos - 1 ? 1 : currentIndex)}
-                        // autoPlay
+                        autoPlay
                         loop
                         muted
                         className='absolute left-0 top-0 size-full object-cover object-center'
