@@ -34,14 +34,19 @@ const Navbar = () => {
                         <div className="hidden md:block">
                             {navItems.map((item) => (
                                 <a key={item}
-                                href={`#${item.toLowerCase()}`}
+                                    href={`#${item.toLowerCase()}`}
 
                                     className="nav-hover-btn">
                                     {item}
                                 </a>
                             ))}
-
                         </div>
+
+                        <button className="ml-10 flex items-center space-x-0.5"
+                        
+                        >
+
+                        </button>
 
                     </div>
 
