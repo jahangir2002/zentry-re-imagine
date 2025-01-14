@@ -64,8 +64,8 @@ body {
   }
 
   .special-font b {
-    font-family: "Zentry";
-    font-feature-settings: "ss01" on;
+    font-family: "zentry-regular" !important;
+    font-feature-settings: "ss01" on !important;
   }
 
   .hero-heading {
