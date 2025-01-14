@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Button from './Button';
 import { TiLocationArrow } from 'react-icons/ti';
 
@@ -7,7 +7,26 @@ const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
 
 const Navbar = () => {
 
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+    const [isIndicatorActive, setIsIndicatorActive] = useState(false);
+
     const navContainerRef = useRef(null);
+    const audioElementRef = useRef(null);
+
+    const toggleAudioIndicator = () => {
+        setIsAudioPlaying((prev) => !prev);
+
+        setIsIndicatorActive((prev)=> !prev);
+    }
+
+    useEffect(()=>{
+        if(isAudioPlaying){
+            audioElementRef.current.play();
+        }else {
+            audioElementRef.current.pause();
+        }
+    },[isAudioPlaying])
 
     return (
         <div
@@ -42,17 +61,23 @@ const Navbar = () => {
                             ))}
                         </div>
 
-                        <button className="ml-10 flex items-center space-x-0.5"
-                        
-                        >
+                        <button
+                            className="ml-10 flex items-center space-x-0.5"
+                            onClick={toggleAudioIndicator} >
+                            <audio
+                                ref={audioElementRef}
+                                src="/audio/loop.mp3" loop
+                                className='hidden' />
+                                {[1, 2, 3, 4].map((bar) => (
+                                    <div key={bar}
+                                        className={`indicator-line ${isIndicatorActive ? 'active' : ''}`} 
+                                        style={{animationDelay:`${bar * 0.1}s`}}>
 
+                                    </div>
+                                ))}
                         </button>
-
                     </div>
-
-
                 </nav>
-
             </header>
 
         </div>
