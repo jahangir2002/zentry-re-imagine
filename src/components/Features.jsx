@@ -99,8 +99,19 @@ const Features = () => {
                                 M<b>o</b>re co<b>m</b>ing s<b>o</b>on.
                             </h1>
 
-                            <TiLocationArrow className="m-5 scale-[5] self-end" />
+                            <TiLocationArrow className=" m-2 scale-[5] self-end" />
                         </div>
+                    </div>
+
+                    <div className="bento-tilt-2">
+                        <video
+                            src="/videos/feature-5.mp4"
+                            loop
+                            muted
+                            autoPlay
+                            className="size-full object-cover object-center"
+                        />
+
 
                     </div>
 
