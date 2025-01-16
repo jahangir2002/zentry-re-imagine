@@ -15,11 +15,10 @@ const Footer = () => {
           ©Nova 2025. All rights reserved
         </p>
 
-        <div className="flex justify-center gap-4  md:justify-start">
+        <div className="flex justify-center gap-4 md:justify-start">
           {socialLinks.map((link, index) => (
-            <Tooltip title={link.tooltip} position="bottom" trigger="mouseenter">
+            <Tooltip key={index} title={link.tooltip} position="bottom" trigger="mouseenter">
               <a
-                key={index}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
