@@ -13,6 +13,7 @@ const Hero = () => {
     const [hasClicked, setHasClicked] = useState(false);
     const [isLoading, setLoading] = useState(true);
     const [loadedVideos, setLoadedVideo] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
 
     const totalVideos = 4;
     const nextVideodRef = useRef(null);
@@ -21,25 +22,31 @@ const Hero = () => {
         setLoadedVideo(prev => prev + 1)
     }
 
-    // 0 % 4 = 0 + 1 = 1
-    // 1 % 4 = 1 + 1 = 2
-    // 2 % 4 = 2 + 1 = 3
-    // 3 % 4 = 3 + 1 = 4
-    // 4 % 4 = 0 + 1 = 1
     const upcommingVideoIndex = (currentIndex % totalVideos) + 1;
 
     const handleMiniVdClick = () => {
         setHasClicked(true);
-
         setCurrentIndex(upcommingVideoIndex);
+    }
 
+    const handleClosePopup = () => {
+        setShowPopup(false);
     }
 
     useEffect(() => {
         if (loadedVideos === totalVideos - 1) {
           setLoading(false);
+          setShowPopup(true);
         }
       }, [loadedVideos]);
+
+    useEffect(() => {
+        if (showPopup) {
+            setTimeout(() => {
+                setShowPopup(false);
+            }, 4000);
+        }
+    }, [showPopup]);
 
     useGSAP(
         () => {
@@ -101,6 +108,16 @@ const Hero = () => {
                     </div>
                 </div>
             )}
+
+            {showPopup && (
+                <div className='popup-message absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-[200]'>
+                    <div className='bg-white p-4 rounded-lg shadow-lg text-center relative'>
+                        <p className='text-lg font-semibold mb-2'>Turn on music for a better experience!</p>
+                        <button onClick={handleClosePopup} className='bg-blue-500 text-white px-4 py-2 rounded-md shadow-md'>Got it!</button>
+                    </div>
+                </div>
+            )}
+
             <div id='video-frame' className='relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75 '>
                 <div>
                     <div className='mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg'>
@@ -115,7 +132,6 @@ const Hero = () => {
                                 id="current-video"
                                 className="size-64 origin-center scale-150 object-cover object-center"
                                 onLoadedData={handleVideoLoad}
-
                             />
                         </div>
                     </div>
@@ -128,7 +144,6 @@ const Hero = () => {
                         id='next-video'
                         className='absolute-center invisible absolute z-10 size-64 object-cover object-center'
                         onLoadedData={handleVideoLoad}
-
                     />
 
                     <video
@@ -151,18 +166,14 @@ const Hero = () => {
 
                         <p className='mb-5 max-w-64 font-robert-regular text-blue-100 capitalize'>Enter the metagame <br /> Unleash the Play  Economy </p>
 
-                        <Button id="watch-tralier" title="Watch Tralier"leftIcon={<TiLocationArrow />} containerClass="!bg-yellow-300 flex-center gap-1" />
-
+                        <Button id="watch-tralier" title="Watch Tralier" leftIcon={<TiLocationArrow />} containerClass="!bg-yellow-300 flex-center gap-1" />
                     </div>
-
                 </div>
-
             </div>
 
             <h1 className='special-font hero-heading absolute bottom-5 right-5 text-black'>
-                    Gaming
-                </h1>
-
+                Gaming
+            </h1>
         </div>
     )
 }
