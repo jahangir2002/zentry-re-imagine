@@ -35,7 +35,9 @@ This project is built using the following tools and libraries:
 - React - A JavaScript library for building user interfaces.
 - Tailwind CSS - A utility-first CSS framework for styling components.
 - GSAP (GreenSock Animation Platform) - For smooth, high-performance animations.
+- Lenis - A lightweight and easy-to-use scroll library for smooth scrolling experiences.
 - Vite - A fast and optimized build tool for modern web development.
+
 ## Features
 
 - Scroll-Based Animations: Dynamic animations triggered by scrolling for a more engaging user experience.
