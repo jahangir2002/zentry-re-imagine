@@ -4,7 +4,8 @@
 Original website: 
 [zentry](https://www.awwwards.com/sites/zentry) 
 
-Re-imagined: 
+Re-imagined:
+[Zentry Re-imagined](https://zentry-re-imagined.netlify.app/)
 
 Zentry is the metagame—a unified play layer that bridges players, agentic AI, and blockchains, opening a new world of AI-driven gamification.
 
